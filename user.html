@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>React-demo</title>
+  </head>
+  <style>
+    table,
+    tr,
+    td,
+    th {
+      border: 1px solid;
+      border-collapse: collapse;
+    }
+    td,
+    th {
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+
+    <!-- Script Files -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      class UserList extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            users: [
+              { id: 1, name: "Naman", email: "naman@gmail.com" },
+              { id: 2, name: "Taman", email: "Taman@gmail.com" },
+              { id: 3, name: "John", email: "john@gmail.com" }
+            ]
+          };
+        }
+        handleRemove = id => {
+          const users = this.state.users.filter(user => user.id !== id);
+          this.setState({ users });
+        };
+        render() {
+          const { users } = this.state;
+          return (
+            <UserTable
+              users={this.state.users}
+              handleRemove={this.handleRemove}
+            />
+          );
+        }
+      }
+
+      const UserTable = ({ users, handleRemove }) => {
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>email-id</th>
+                <th>action</th>
+              </tr>
+            </thead>
+            <UserRow users={users} handleRemove={handleRemove} />
+          </table>
+        );
+      };
+
+      const UserRow = ({ users, handleRemove }) => {
+        return (
+          <tbody>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      handleRemove(user.id);
+                    }}
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        );
+      };
+      ReactDOM.render(<UserList />, root);
+    </script>
+  </body>
+</html>
