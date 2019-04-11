@@ -18,14 +18,24 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
+
         let root = document.getElementById("rootDiv");
 
+        // simple Components
+
+        // 1. StateFull/container/class component
         class Hello extends React.Component{
           render(){
-            return <h1> Hello {this.props.name} </h1>
+            return <SayHi name={this.props.name}/>
           }
         }
 
+        // 2. Stateless/dummy/functional component
+        const SayHi = (props) =>{
+          return <h1> Hello {props.name}</h1>
+        }
+
+        // Rendering in to browser using virtual DOM.
         ReactDOM.render(<Hello name="Aowisky"/>, root);
     </script>
   </body>
