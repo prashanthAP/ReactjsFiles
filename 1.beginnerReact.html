@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Beginner React Application</title>
+</head>
+
+<body>
+  <div id="rootDiv"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+        let root = document.getElementById("rootDiv");
+
+        // Reactjs code goes HERE
+        
+        // Simple React code without JSX.
+        // ReactDOM.render(React.createElement('h1', {className:"userdefined", {style:{{color:'red'}}}}, 'Hello word'), document.getElementById('rootDiv'));
+
+        // Simple React code with JSX
+        // ReactDOM.render(<h1>Hello Word..</h1>, document.getElementById('rootDiv'));
+
+        let element = React.createElement('h1', {className:'userDefined'}, 'The rendering text');
+        // React.createElement() performs a few checks to help you write bug-free code      but essentially it creates an object like this:
+        let obj = JSON.stringify({
+                      type:'h2',
+                      props:{
+                        className:'userDefined',
+                        children: "The rendering text"
+                      }
+                    })
+        let prevElement = React.createElement('code', {}, obj)
+        
+        let Element = () => {
+          return <div>
+            {element}
+            <p>The above code uses React.createElement() performs a few checks to help        us write bug-free code but essentially it creates an object like below</p>
+            {prevElement}
+          </div>
+        }    
+
+        // Rendering in to browser using virtual DOM.
+            ReactDOM.render(<Element />, root);
+
+    </script>
+</body>
+
+</html>

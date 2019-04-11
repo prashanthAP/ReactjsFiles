@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Beginner React Application</title>
+</head>
+
+<body>
+  <div id="rootDiv"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+        // Reactjs code goes HERE
+         const root = document.getElementById("rootDiv");
+
+        // NOTE : 1. Components let you split the UI into independent, reusable pieces,                   and think about each piece in isolation.
+        //        2.Conceptually, components are like JavaScript functions. They accept              arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+        //        3. The simple way of defining component is to write javascript functions.
+
+        //    React is pretty flexible but it has a single strict rule: 
+        //    All React components must act like pure functions with respect to their props.
+
+      // Always start component names with a capital letter. 
+        function Greeting(props){
+          return <h1>{props.name}</h1>;
+        }
+
+      // Composing of components.  
+        function App({name}){
+          return <div>
+            <Greeting name={name}/>
+            <Greeting name={name}/>
+            <Greeting name={name}/>
+          </div>
+        }
+
+        ReactDOM.render(<App name='Anamica'/>, root)
+
+    </script>
+</body>
+
+</html>

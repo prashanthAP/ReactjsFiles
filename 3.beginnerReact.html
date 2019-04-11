@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Beginner React Application</title>
+</head>
+
+<body>
+  <div id="rootDiv"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+        // Reactjs code goes HERE
+        
+        // Updating the RenderElement (The below function is invoking on setinterval of every seconds.)
+          function time(){
+           let  digitalTime = <div>
+              <h1>
+                  The localtime  =  {new Date().toLocaleTimeString()}
+              </h1>
+            </div>
+            ReactDOM.render(digitalTime, document.getElementById('rootDiv'));
+          }
+          setInterval(time, 1000);
+
+          // NOTE: ReactDOM.render() will be called only once in structured applications. And React will update only what is changing virtually by comparing realDOM with react virtualDOM i.e Even though we create an element describing the whole UI tree on every interval, only the text node whose contents has changed gets updated by React DOM.
+    </script>
+</body>
+
+</html>
